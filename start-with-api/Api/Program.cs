@@ -5,6 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.AddRedisOutputCache("cache");
+builder.AddServiceDefaults();
+
 builder.Services.AddNwsManager();
 
 var app = builder.Build();
@@ -20,5 +23,6 @@ app.UseHttpsRedirection();
 
 // Map the endpoints for the API
 app.MapApiEndpoints();
+app.MapDefaultEndpoints();
 
 app.Run();
